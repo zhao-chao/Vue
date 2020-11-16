@@ -116,7 +116,6 @@
  **v-once 只编译一次  显示内容后  就不具备响应式了**
 
 ```html
-
 	<body>
 		<div id="app">
 			<!-- v-once 只编译一次  显示内容后  就不具备响应式了 -->
@@ -137,7 +136,6 @@
 # 5.v-model 数据双向绑定
 
 ```html
-
 	<body>
 		<div id="app">
 			<!-- 在input 框里面输入 内容 会改变 下面的arr 的值 -->
@@ -242,7 +240,7 @@
 
 ```
 
-##事件修饰符
+##鼠标事件事件修饰符
 
 ###.prevent  这是阻止默认事件触发
 
@@ -268,7 +266,9 @@
 
 ```
 
-### .once 这是只让事件触发一次
+###.once 这是只让事件触发一次
+
+
 
 ```html
 	<body>
@@ -371,4 +371,136 @@
 	</body>
 ```
 
+## 按键修饰符
+
+.enter 回车键
+
+.delete 删除键
+
+
+
+```html
+.delete 删除键<body>
+		<div id="app">
+            <!--  .delete 删除键  -->
+			用户名：<input type="text" v-model="uname" @keyup.delete="obj2" />
+			<br />
+			密码：
+              <!--  .enter 回车键  -->
+			<input type="text" v-model="password" @keyup.enter="obj"/>
+			<br />
+			<button @click="obj">提交</button>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				data: {
+					uname: '',
+					password: '',
+				},
+				methods: {
+					obj: function () {
+						console.log(this.uname, this.password)
+					},
+					obj2: function () {
+						this.uname = ''
+					},
+				},
+			})
+		</script>
+	</body>
+```
+
+###自定义修饰符
+
+```html
+	<body>
+		<div id="app">
+			<input type="text" v-on:keyup.aaa="obj" v-model="uname" />
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			/*  事件绑定-自定义按键修饰符
+                规则：自定义按键修饰符名字是自定义的，
+                但是对应的值必须是按键对应event.keyCode值
+            */
+			Vue.config.keyCodes.aaa = 65
+			let vm = new Vue({
+				el: '#app',
+				data: {
+					uname: '',
+				},
+				methods: {
+					obj: function (event) {
+						console.log(event.keyCode)
+					},
+				},
+			})
+		</script>
+	</body>
+```
+
+# 7.v-bind
+
+```html
+	<body>
+		<div id="app">
+			<a v-bind:href="url">{{mz}}</a>
+			<a :href="url">{{mz}}</a>
+			<button :disabled="disabled">{{mz2}}</button>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					mz: '百度',
+					url: 'http:baidu.com',
+					mz2: '按钮',
+					disabled: '', //这里只要有值就是被禁用 null  undefined false 除外
+				},
+			})
+		</script>
+	</body>
+//  v-bind 可以控制标签内部的属性 比如a 标签里面的href   
+//  v-bind:disabled 可以控制按钮是否被禁用 
+//  v-bind:href="url"  可以简写成 :href="url" 
+ 
+```
+
+## v -bind  class 样式处理
+
+```html
+		<style>
+			.div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+
+	<body>
+		<div id="app">
+			<!-- div 是类名     isa自定义 是布尔值 -->
+			<div v-bind:class="{ div:isa }"></div>
+			<button @click="obj">切换</button>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				data: {
+					isa: true,
+				},
+				methods: {
+					obj: function () {
+						// 取反
+						this.isa = !this.isa
+					},
+				},
+			})
+		</script>
+	</body>
+```
 
