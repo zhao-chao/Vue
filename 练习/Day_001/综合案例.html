@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			span {
+				display: inline-block;
+				width: 100px;
+				height: 50px;
+				border: 1px solid red;
+				text-align: center;
+				padding-top: 13px;
+				box-sizing: border-box;
+			}
+			img {
+				margin-top: 5px;
+			}
+			.bj {
+				background-color: #f7b078;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<span @click="obj1" v-bind:class="{ bj:is1 }">苹果</span>
+			<span @click="obj2" v-bind:class="{ bj:is2 }">橙子</span>
+			<span @click="obj3" v-bind:class="{ bj:is3 }">柠檬 </span>
+			<div>
+				<img :src="url" alt="" />
+			</div>
+		</div>
+		<script src="./js/vue.min.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					url: './img/apple.png',
+					is1: true,
+					is2: false,
+					is3: false,
+				},
+				methods: {
+					obj1: function () {
+						this.url = './img/apple.png'
+						this.is1 = true
+						this.is2 = false
+						this.is3 = false
+					},
+					obj2: function () {
+						this.url = './img/orange.png'
+						this.is1 = false
+						this.is2 = true
+						this.is3 = false
+					},
+					obj3: function () {
+						this.url = './img/lemon.png'
+						this.is1 = false
+						this.is2 = false
+						this.is3 = true
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

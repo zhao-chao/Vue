@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>vue</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 帮助vue区分不同的元素，从而提高性能  
+                要是没有id 的话   用index  -->
+			<span :key="arr.index" v-for="(arr,index) in 10"> {{arr}} </span>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					age: '',
+				},
+			})
+		</script>
+	</body>
+</html>
