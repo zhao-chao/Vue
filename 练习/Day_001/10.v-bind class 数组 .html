@@ -10,13 +10,14 @@
 				height: 100px;
 				background-color: red;
 			}
+			.box {
+				border-radius: 50%;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
-			<!-- div 是类名     isa自定义 是布尔值
-            当isa 为true 时候 类名生效 -->
-			<div v-bind:class="{ div:isa }"></div>
+			<div v-bind:class="[isa,boxa]"></div>
 			<button @click="obj">切换</button>
 		</div>
 		<script src="./js/vue.js"></script>
@@ -24,12 +25,13 @@
 			let vm = new Vue({
 				el: '#app',
 				data: {
-					isa: true,
+					isa: 'div',
+					boxa: 'box',
 				},
 				methods: {
 					obj: function () {
 						// 取反
-						this.isa = !this.isa
+						this.boxa = ''
 					},
 				},
 			})

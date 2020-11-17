@@ -471,6 +471,8 @@
 
 ## v -bind  class 样式处理
 
+### 对像 绑定
+
 ```html
 		<style>
 			.div {
@@ -482,7 +484,8 @@
 
 	<body>
 		<div id="app">
-			<!-- div 是类名     isa自定义 是布尔值 -->
+			<!-- div 是类名     isa自定义 是布尔值
+            当isa 为true 时候 类名生效 -->
 			<div v-bind:class="{ div:isa }"></div>
 			<button @click="obj">切换</button>
 		</div>
@@ -503,4 +506,142 @@
 		</script>
 	</body>
 ```
+
+### 数组 绑定
+
+```html
+		<style>
+			.div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			.box {
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div v-bind:class="[isa,boxa]"></div>
+			<button @click="obj">切换</button>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				data: {
+					isa: 'div',
+					boxa: 'box',
+				},
+				methods: {
+					obj: function () {
+				
+						this.boxa = ''
+					},
+				},
+			})
+		</script>
+	</body>
+```
+
+### 对像 数组 结合使用
+
+```html
+		<style>
+			.div {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			.box {
+				border-radius: 50%;
+			}
+			.a {
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 这是数组 结合对像的方法 -->
+			<div v-bind:class="[isa,boxa,{ a:isa}]">拉拉</div>
+			<!-- 这是简化炒作 在下面定义类名的数组 -->
+			<div v-bind:class="arr">拉拉</div>
+			<!-- 这是对象的简化操作 在下面定义类名的数组 -->
+			<!-- 默认的属性会保留 -->
+			<div v-bind:class="obj1" class="a">拉拉</div>
+			<button @click="obj">切换</button>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			let vm = new Vue({
+				el: '#app',
+				data: {
+					isa: 'div',
+					boxa: 'box',
+					str: {
+						isa: true,
+					},
+					arr: ['div', 'box', 'a'],
+
+					obj1: {
+						div: true,
+						box: true,
+					},
+				},
+				methods: {
+					obj: function () {
+						// 取反
+						this.boxa = ''
+					},
+				},
+			})
+		</script>
+	</body>
+```
+
+## v-bind style  绑定用法
+
+```html
+ <div id="app">
+    <div v-bind:style='{border: borderStyle, width: widthStyle, height: heightStyle}'></div>
+    <div v-bind:style='objStyles'></div>
+    <div v-bind:style='[objStyles, overrideStyles]'></div>
+    <button v-on:click='handle'>切换</button>
+  </div>
+  <script type="text/javascript" src="js/vue.js"></script>
+  <script type="text/javascript">
+    /*
+      样式绑定之内联样式Style：
+      
+    */
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        borderStyle: '1px solid blue',
+        widthStyle: '100px',
+        heightStyle: '200px',
+        objStyles: {
+          border: '1px solid green',
+          width: '200px',
+          height: '100px'
+        },
+        overrideStyles: {
+          border: '5px solid orange',
+          backgroundColor: 'blue'
+        }
+      },
+      methods: {
+        handle: function(){
+          this.heightStyle = '100px';
+          this.objStyles.width = '100px';
+        }
+      }
+    });
+  </script>
+</body>
+```
+
+
 
