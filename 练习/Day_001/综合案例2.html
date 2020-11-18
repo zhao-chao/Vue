@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			span {
+				display: inline-block;
+				width: 100px;
+				height: 50px;
+				border: 1px solid red;
+				text-align: center;
+				padding-top: 13px;
+				box-sizing: border-box;
+			}
+			img {
+				margin-top: 5px;
+			}
+			.bj {
+				background-color: #f7b078;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<span v-for="arr in obj">{{arr.uname}}</span>
+			<hr />
+
+			<img :src="arr.url" alt="" v-for="arr in obj" />
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					obj: [
+						{
+							uname: '苹果',
+							url: './img/apple.png',
+						},
+						{
+							uname: '橘子',
+							url: './img/lemon.png',
+						},
+						{
+							uname: '柠檬',
+							url: './img/orange.png',
+						},
+					],
+				},
+			})
+		</script>
+	</body>
+</html>
