@@ -14,26 +14,43 @@
 				padding-top: 13px;
 				box-sizing: border-box;
 			}
-			img {
+			.div {
+				display: none;
 				margin-top: 5px;
 			}
 			.bj {
 				background-color: #f7b078;
 			}
+			.yc {
+				display: block;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
-			<span v-for="arr in obj">{{arr.uname}}</span>
+			<span
+				:key="arr.index"
+				:class="str==index? 'bj':''"
+				v-for="(arr,index) in obj"
+				@click="fun(index)"
+				>{{arr.uname}}</span
+			>
 			<hr />
-
-			<img :src="arr.url" alt="" v-for="arr in obj" />
+			<div
+				:key="arr.index"
+				v-for="(arr,index) in obj"
+				class="div"
+				:class="str==index? 'yc':''"
+			>
+				<img :src="arr.url" alt="" />
+			</div>
 		</div>
 		<script src="./js/vue.js"></script>
 		<script>
 			new Vue({
 				el: '#app',
 				data: {
+					str: 0,
 					obj: [
 						{
 							uname: '苹果',
@@ -48,6 +65,11 @@
 							url: './img/orange.png',
 						},
 					],
+				},
+				methods: {
+					fun: function (i) {
+						this.str = i
+					},
 				},
 			})
 		</script>
