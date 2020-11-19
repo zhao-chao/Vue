@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- .number是转换为数值型 -->
+			<input type="text" v-model.number="age" />
+			<!--  .trim  去掉前后的空格 -->
+			<input type="text" v-model.trim="info" />
+			<!-- .lazy 这个是自动获得 表单里的光标 -->
+			<input type="text" v-model.lazy="msg" />
+			<div>{{msg}}</div>
+			<button @click="handle">点击</button>
+		</div>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript">
+			/*
+      表单域修饰符
+    */
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					age: '',
+					info: '',
+					msg: '',
+				},
+				methods: {
+					handle: function () {
+						// console.log(this.age + 13)
+						// console.log(this.info.length)
+					},
+				},
+			})
+		</script>
+	</body>
+</html>

@@ -995,3 +995,124 @@
 	</body>
 ``````````
 
+#表单
+
+## 基本操作
+
+- 通过 v-model，获取单选框中的值
+
+```html
+<div id="app">
+    <!-- 
+        1、两个单选框需要同时通过 v-model 双向绑定一个值 
+        2、每一个单选框必须要有 value 属性，且 value 值不能一样 
+        3、当某一个单选框选中的时候 v-model 会将当前的 value 值改变成 data 中的数据
+        gender 的值就是选中的值，我们只需要实时监控他的值就可以了
+    -->
+    <input type="radio" name="sex" id="male" value="1" v-model='gender'>
+    <label for="male">男</label>
+
+    <input type="radio" name="sex" id="female" value="2" v-model='gender'>
+    <label for="female">女</label>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            // 默认会让当前的 value 值为 2 的单选框选中
+            gender: 2,
+        }
+    });
+</script>
+```
+
+- 通过 v-model，获取复选框中的值
+
+  - 和获取单选框中的值一样 
+
+  - 复选框 `checkbox` 这种的组合时，data 中的 hobby 我们要定义成数组，否则无法实现多选
+
+```html
+<div id="app">
+    <span>爱好：</span>
+    <input name="hobbies" type="checkbox" id="ball" value="1" v-model='hobby'>
+    <label for="ball">篮球</label>
+    <input name="hobbies" type="checkbox" id="sing" value="2" v-model='hobby'>
+    <label for="sing">唱歌</label>
+    <input name="hobbies" type="checkbox" id="code" value="3" v-model='hobby'>
+    <label for="code">写代码</label>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            // 默认会让当前的 value 值为 2 和 3 的复选框选中
+            hobby: ['2', '3'],
+        },
+    });
+</script>
+```
+
+- 通过 v-model，获取下拉框和文本框中的值
+
+```html
+<div id="app">
+    <span>职业：</span>
+    <!--
+        1、需要给 select，通过 v-model 双向绑定一个值
+        2、每一个 option，必须要有 value 属性且 value 值不能一样 
+        3、当某一个 option 选中的时候 v-model会将当前的 value 值改变成 data 中的数据
+            occupation 的值就是选中的值，我们只需要实时监控他的值就可以了
+    -->
+    <!-- multiple  多选 -->
+    <select v-model='occupation' multiple>
+        <option value="0">请选择职业...</option>
+        <option value="1">教师</option>
+        <option value="2">软件工程师</option>
+        <option value="3">律师</option>
+    </select>
+    <!-- textarea 是 一个双标签   不需要绑定value 属性的  -->
+    <textarea v-model='desc'></textarea>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            // 默认会让当前的 value 值为 2 和 3 的下拉框选中
+            occupation: ['2', '3'],
+            desc: 'nihao'
+        },
+    });
+</script>
+```
+
+## 表单修饰符
+
+- .number，转换为数值
+
+  - 当开始输入非数字的字符串时，因为 Vue 无法将字符串转换成数值
+
+  - 所以属性值将实时更新成相同的字符串。即使后面输入数字，也将被视作字符串
+
+- .trim，自动过滤用户输入的首尾空白字符
+
+  - 只能去掉首尾的，不能去除中间的空格
+
+- .lazy，将 input 事件切换成 change 事件
+
+```html
+<div id="app">
+    <!-- 自动将用户的输入值转为数值类型 -->
+    <input v-model.number="age" type="number">
+
+    <!--自动过滤用户输入的首尾空白字符   -->
+    <input v-model.trim="msg">
+
+    <!-- 在“change”时而非“input”时更新 -->
+    <input v-model.lazy="msg">
+</div>
+```
+
