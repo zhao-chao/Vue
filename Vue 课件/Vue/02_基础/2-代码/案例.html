@@ -38,8 +38,6 @@
 					<h1>图书管理</h1>
 					<div class="book">
 						<div>
-							<label for="id"> 编号： </label>
-							<input type="text" id="id" v-model="id" />
 							<label for="name"> 名称： </label>
 							<input type="text" id="name" v-model="name" />
 							<button @click="handle">提交</button>
@@ -56,8 +54,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr :key="item.id" v-for="item in books">
-							<td>{{item.id}}</td>
+						<tr :key="item.index" v-for="(item,index) in books">
+							<td>{{index + 1}}</td>
 							<td>{{item.name}}</td>
 							<td>{{item.date}}</td>
 							<td>
@@ -82,22 +80,18 @@
 					name: '',
 					books: [
 						{
-							id: 1,
 							name: '三国演义',
 							date: '',
 						},
 						{
-							id: 2,
 							name: '水浒传',
 							date: '',
 						},
 						{
-							id: 3,
 							name: '红楼梦',
 							date: '',
 						},
 						{
-							id: 4,
 							name: '西游记',
 							date: '',
 						},
@@ -107,7 +101,7 @@
 					handle: function () {
 						// 添加图书
 						var book = {}
-						book.id = this.id
+
 						book.name = this.name
 						book.date = ''
 						this.books.push(book)
