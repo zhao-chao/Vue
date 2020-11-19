@@ -6,9 +6,13 @@
 	</head>
 	<body>
 		<div id="app">
+			<!-- 回去data 里面找 msg -->
 			<input type="text" v-color="msg" />
+
+			<!-- 传递的是一个对像 -->
 			<input type="text" v-color="{color:'red'}" />
 
+			<!-- 直接传递的是 red  这个字符串 -->
 			<!-- 这样 直接写值  下面函数里面不带 color -->
 			<input type="text" v-color="'red'" />
 		</div>
