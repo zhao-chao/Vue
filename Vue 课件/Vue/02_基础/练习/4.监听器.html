@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model.lazy="msg" />
+			<div>{{pp}}</div>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data: {
+					msg: '',
+					pp: '',
+				},
+				methods: {
+					cn: function (uname) {
+						var that = this
+						setTimeout(function () {
+							if (uname == 123) {
+								that.pp = '等下'
+							} else {
+								that.pp = '来吧'
+							}
+						}, 1000)
+					},
+				},
+				watch: {
+					msg: function (v) {
+						this.cn(v)
+						this.pp = '在看'
+					},
+				},
+			})
+		</script>
+	</body>
+</html>
