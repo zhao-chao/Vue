@@ -95,79 +95,123 @@
 		<script type="text/javascript" src="js/vue.js"></script>
 		<script type="text/javascript">
 			var CartTitle = {
-				template: `<div class="title">我的商品</div>`,
+				props: ['uname'],
+				template: ` <div class="title">{{ uname }}的商品</div>`,
 			}
 
 			var CartList = {
 				template: `	<div>
-						<div class="item">
-							<img src="img/a.jpg" />
-							<div class="name"></div>
-							<div class="change">
-								<a href="">－</a>
-								<input type="text" class="num" />
-								<a href="">＋</a>
-							</div>
-							<div class="del">×</div>
-						</div>
-						<div class="item">
-							<img src="img/b.jpg" />
-							<div class="name"></div>
-							<div class="change">
-								<a href="">－</a>
-								<input type="text" class="num" />
-								<a href="">＋</a>
-							</div>
-							<div class="del">×</div>
-						</div>
-						<div class="item">
-							<img src="img/c.jpg" />
-							<div class="name"></div>
-							<div class="change">
-								<a href="">－</a>
-								<input type="text" class="num" />
-								<a href="">＋</a>
-							</div>
-							<div class="del">×</div>
-						</div>
-						<div class="item">
-							<img src="img/d.jpg" />
-							<div class="name"></div>
-							<div class="change">
-								<a href="">－</a>
-								<input type="text" class="num" />
-								<a href="">＋</a>
-							</div>
-							<div class="del">×</div>
-						</div>
-						<div class="item">
-							<img src="img/e.jpg" />
-							<div class="name"></div>
-							<div class="change">
-								<a href="">－</a>
-								<input type="text" class="num" />
-								<a href="">＋</a>
-							</div>
-							<div class="del">×</div>
-						</div>
-					</div>`,
+									<div class="item">
+										<img src="img/a.jpg" />
+										<div class="name"></div>
+										<div class="change">
+											<a href="">－</a>
+											<input type="text" class="num" />
+											<a href="">＋</a>
+										</div>
+										<div class="del">×</div>
+									</div>
+									<div class="item">
+										<img src="img/b.jpg" />
+										<div class="name"></div>
+										<div class="change">
+											<a href="">－</a>
+											<input type="text" class="num" />
+											<a href="">＋</a>
+										</div>
+										<div class="del">×</div>
+									</div>
+									<div class="item">
+										<img src="img/c.jpg" />
+										<div class="name"></div>
+										<div class="change">
+											<a href="">－</a>
+											<input type="text" class="num" />
+											<a href="">＋</a>
+										</div>
+										<div class="del">×</div>
+									</div>
+									<div class="item">
+										<img src="img/d.jpg" />
+										<div class="name"></div>
+										<div class="change">
+											<a href="">－</a>
+											<input type="text" class="num" />
+											<a href="">＋</a>
+										</div>
+										<div class="del">×</div>
+									</div>
+									<div class="item">
+										<img src="img/e.jpg" />
+										<div class="name"></div>
+										<div class="change">
+											<a href="">－</a>
+											<input type="text" class="num" />
+											<a href="">＋</a>
+										</div>
+										<div class="del">×</div>
+									</div>
+								</div>`,
 			}
 
 			var CartTotal = {
 				template: `	<div class="total">
-						<span>总价：123</span>
-						<button>结算</button>
-					</div>`,
+									<span>总价：123</span>
+									<button>结算</button>
+								</div>`,
 			}
 
 			Vue.component('my-cart', {
+				data: function () {
+					return {
+						uname: '张三',
+						list: [
+							{
+								id: 1,
+								name: 'TCL彩电',
+								price: 1000,
+								num: 1,
+								img: 'img/a.jpg',
+							},
+							{
+								id: 2,
+								name: '机顶盒',
+								price: 1000,
+								num: 1,
+								img: 'img/b.jpg',
+							},
+							{
+								id: 3,
+								name: '海尔冰箱',
+								price: 1000,
+								num: 1,
+								img: 'img/c.jpg',
+							},
+							{
+								id: 4,
+								name: '小米手机',
+								price: 1000,
+								num: 1,
+								img: 'img/d.jpg',
+							},
+							{
+								id: 5,
+								name: 'PPTV电视',
+								price: 1000,
+								num: 2,
+								img: 'img/e.jpg',
+							},
+						],
+					}
+				},
+
 				template: `
-                <div class="cart">
-                    <cart-title></cart-title>
-                    <cart-list></cart-list>
-                    <cart-total></carte-total>
-                    </div>
-			             `,
+			                <div class="cart">
+			                    <cart-title :uname='uname'></cart-title>
+			                    <cart-list></cart-list>
+			                    <cart-total></cart-total>
+			                    </div>
+						             `,
 				components: {
 					'cart-title': CartTitle,
 					'cart-list': CartList,
