@@ -21,20 +21,43 @@
 
 		<script>
 			const User = {
-				template: '<h1>User 组件</h1>',
+				template: '<h1> user 组件1</h1>',
 			}
 
 			const Register = {
-				template: '<h1>Register 组件</h1>',
+				template: `<div>
+          <h1>Register 组件</h1>
+          <hr/>
+
+          <!-- 子路由链接 -->
+          <router-link to="/register/a">tab1</router-link>
+          <router-link to="/register/b">tab2</router-link>
+          <!-- 子路由的占位符 -->
+          <router-view />
+        <div>`,
+			}
+			const a = {
+				template: `<h2>a</h2>`,
+			}
+			const b = {
+				template: `<h2>b</h2>`,
 			}
 
-			// 创建路由实例对象
 			const router = new VueRouter({
-				// 所有的路由规则
 				routes: [
 					{ path: '/', redirect: '/user' },
 					{ path: '/user', component: User },
-					{ path: '/register', component: Register },
+					{
+						path: '/register',
+						component: Register,
+
+						children: [
+							{ path: '/', component: a },
+
+							{ path: 'a', component: a },
+							{ path: 'b', component: b },
+						],
+					},
 				],
 			})
 
@@ -43,6 +66,7 @@
 				// 指定控制的区域
 				el: '#app',
 				data: {},
+				router,
 				// 挂载路由实例对象
 				// router: router
 				router,
