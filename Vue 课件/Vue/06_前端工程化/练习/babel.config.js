@@ -1,4 +1,3 @@
-// targets 代表需要兼容的浏览器版本
 const presets = [
 	[
 		'@babel/env',
@@ -12,7 +11,4 @@ const presets = [
 		},
 	],
 ]
-
-module.exports = {
-	presets,
-}
+module.exports = { presets }
